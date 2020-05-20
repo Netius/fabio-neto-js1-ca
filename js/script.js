@@ -26,7 +26,7 @@ function createHearthStoneCards(hearthStoneCards) {
     const cardsSets = document.querySelector(".results");
     let cardsSetsHtml = "";
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 200; i++) {
 
         // Checks if it has an image to display
         let cardsImage = hearthStoneCards[i].img;
@@ -34,11 +34,18 @@ function createHearthStoneCards(hearthStoneCards) {
             cardsImage = "https://via.placeholder.com/253x383?text=NO+IMAGE"
         }
 
+        //TODO gotta decide with i want this
+        let cardsName = hearthStoneCards[i].name;
+        if (cardsName === hearthStoneCards[i + 1].name) {
+            continue;
+        }
+
+
         cardsSetsHtml += `<div class="col-sm-6 col-md-4 col-lg-3">
         <div class="card">
             <img class="image" src="${cardsImage}" alt="Title/Name" />
             <div class="details">
-                <h4 class="name">${hearthStoneCards[i].name}</h4>
+                <h4 class="name">${cardsName}</h4>
                 <p><b>Health: </b>${hearthStoneCards[i].health}</p>
                 <p><b>Class: </b>${hearthStoneCards[i].playerClass}</p>
                 <p><b>Type: </b>${hearthStoneCards[i].type}</p>
