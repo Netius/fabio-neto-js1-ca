@@ -14,11 +14,19 @@ async function fetchHearthStonesCards() {
         const hearthStoneCards = await response.json();
         createHearthStoneCards(hearthStoneCards);
     } catch (error) {
-        console.log(error);
+        console.dir(error);
+        errorMessage();
+
     }
 }
 fetchHearthStonesCards();
 
+//Display error msg if an error while fetching
+function errorMessage() {
+    const errorMsg = document.querySelector(".loader");
+    errorMsg.classList.remove("loader");
+    errorMsg.classList.add("error");
+}
 
 function createHearthStoneCards(hearthStoneCards) {
     console.log(hearthStoneCards);
@@ -26,30 +34,23 @@ function createHearthStoneCards(hearthStoneCards) {
     const cardsSets = document.querySelector(".results");
     let cardsSetsHtml = "";
 
-    for (let i = 0; i < 200; i++) {
-
+    for (let i = 0; i < 12; i++) {
         // Checks if it has an image to display
         let cardsImage = hearthStoneCards[i].img;
         if (!cardsImage) {
             cardsImage = "https://via.placeholder.com/253x383?text=NO+IMAGE"
         }
 
-        //TODO gotta decide with i want this
-        let cardsName = hearthStoneCards[i].name;
-        if (cardsName === hearthStoneCards[i + 1].name) {
-            continue;
-        }
-
-
+        //Build up the Hearthstone Cards html
         cardsSetsHtml += `<div class="col-sm-6 col-md-4 col-lg-3">
         <div class="card">
             <img class="image" src="${cardsImage}" alt="Title/Name" />
             <div class="details">
-                <h4 class="name">${cardsName}</h4>
-                <p><b>Health: </b>${hearthStoneCards[i].health}</p>
+                <h4 class="name">${hearthStoneCards[i].name}</h4>
+                <p><b>Card Set: </b>${hearthStoneCards[i].cardSet} </p>
                 <p><b>Class: </b>${hearthStoneCards[i].playerClass}</p>
                 <p><b>Type: </b>${hearthStoneCards[i].type}</p>
-                <a class="btn btn-primary" href="details.html?id=">Details</a>
+                <a class="btn btn-primary" href="details.html?id=${hearthStoneCards[i].cardId}">Details</a>
             </div>
         </div>
     </div>
