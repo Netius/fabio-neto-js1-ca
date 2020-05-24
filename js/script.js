@@ -1,9 +1,9 @@
-;
 const corsUrl = "https://noroffcors.herokuapp.com/";
+const apiUrl = "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/Blackrock%2520Mountain"; //Only Blackrock Mountain card set
 
 async function fetchHearthStonesCards() {
     try {
-        const response = await fetch(corsUrl + "https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/sets/Blackrock%2520Mountain", {
+        const response = await fetch(`${corsUrl}${apiUrl}`, {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "omgvamp-hearthstone-v1.p.rapidapi.com",
@@ -16,12 +16,11 @@ async function fetchHearthStonesCards() {
     } catch (error) {
         console.dir(error);
         errorMessage();
-
     }
 }
 fetchHearthStonesCards();
 
-//Display error msg if an error while fetching
+//Remove loading animation and Display error msg if an error while fetching
 function errorMessage() {
     const errorMsg = document.querySelector(".loader");
     errorMsg.classList.remove("loader");
@@ -34,12 +33,15 @@ function createHearthStoneCards(hearthStoneCards) {
     const cardsSets = document.querySelector(".results");
     let cardsSetsHtml = "";
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 40; i++) {
+
+
         // Checks if it has an image to display
         let cardsImage = hearthStoneCards[i].img;
         if (!cardsImage) {
             cardsImage = "https://via.placeholder.com/253x383?text=NO+IMAGE"
         }
+
 
         //Build up the Hearthstone Cards html
         cardsSetsHtml += `<div class="col-sm-6 col-md-4 col-lg-3">
