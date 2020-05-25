@@ -19,20 +19,12 @@ async function fetchSingleCard() {
 
     } catch (error) {
         console.dir(error);
-        errorMessage();
+        errorMessage(); //Using function from error.js for both index.html and details.html
     }
 }
 fetchSingleCard();
 
-//Display error message if any catch error
-function errorMessage() {
-    const errorMessage = document.createElement("div");
-    detailsContainer.appendChild(errorMessage);
-    errorMessage.classList.add("error");
-}
-
 const detailsContainer = document.querySelector(".detail-container");
-
 function createSingleHearthCard(singleHearthCard) {
     console.log(singleHearthCard)
 
@@ -49,12 +41,14 @@ function createSingleHearthCard(singleHearthCard) {
     <div class="detail-details">
         <h1>${singleHearthCard[0].name}</h1>
         <p><b>Card ID: </b><span class="value">${singleHearthCard[0].cardId}</span></p>
+        <p><b>Dbf ID: </b><span class="value">${singleHearthCard[0].dbfId}</span></p>
         <p><b>Location: </b><span class="value">${singleHearthCard[0].locale}</span></p>
         <p><b>Description: </b><span class="value">${singleHearthCard[0].text}</span></p>`;
 
     detailsContainer.innerHTML = detailsHtml;
 
 }
+
 
 
 

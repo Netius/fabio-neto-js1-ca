@@ -10,22 +10,15 @@ async function fetchHearthStonesCards() {
                 "x-rapidapi-key": "afb59737femshf5310530e104bffp1abfe3jsnd367d9674f77"
             }
         });
-        //FIXME 223 in result after fecthing, gotta cut down to maybe 20
+
         const hearthStoneCards = await response.json();
         createHearthStoneCards(hearthStoneCards);
     } catch (error) {
         console.dir(error);
-        errorMessage();
+        errorMessage(); //Using function from error.js for both index.html and details.html
     }
 }
 fetchHearthStonesCards();
-
-//Remove loading animation and Display error msg if an error while fetching
-function errorMessage() {
-    const errorMsg = document.querySelector(".loader");
-    errorMsg.classList.remove("loader");
-    errorMsg.classList.add("error");
-}
 
 function createHearthStoneCards(hearthStoneCards) {
     console.log(hearthStoneCards);
@@ -34,7 +27,6 @@ function createHearthStoneCards(hearthStoneCards) {
     let cardsSetsHtml = "";
 
     for (let i = 0; i < 40; i++) {
-
 
         // Checks if it has an image to display
         let cardsImage = hearthStoneCards[i].img;
