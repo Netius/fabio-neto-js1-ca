@@ -1,20 +1,10 @@
-const paragraph = document.querySelectorAll(".about p");
-
-var wordsObj = {
-    the: "banana",
-    The: "Banana"
-};
-
-for (let i = 0; i < paragraph.length; i++) {
-    // console.log(paragraph[i].innerText);
-
-    let varA = paragraph[i].innerText.replace(/the |The /g, " banana ", "Banan+");
-
-
-    console.log(varA);
-
+function changeWords() {
+    const paragraph = document.querySelectorAll(".about p:not(:last-child)");
+    for (let i = 0; i < paragraph.length; i++) {
+        let changedParagraph = "";
+        changedParagraph = paragraph[i].innerText.replace(/the /g, "banana ").replace(/The /g, "Banana ");
+        paragraph[i].innerHTML = changedParagraph;
+    }
 }
 
-
-
-
+setTimeout(changeWords, 3000);
