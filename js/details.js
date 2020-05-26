@@ -24,7 +24,17 @@ async function fetchSingleCard() {
 }
 fetchSingleCard();
 
+
+//Remove loading animation and Display error msg if an error while fetching
+function errorMessage() {
+    const errorMsg = document.querySelector(".loader");
+    errorMsg.classList.remove("loader");
+    errorMsg.classList.add("error");
+}
+
+
 const detailsContainer = document.querySelector(".detail-container");
+
 function createSingleHearthCard(singleHearthCard) {
     console.log(singleHearthCard)
 
@@ -48,7 +58,3 @@ function createSingleHearthCard(singleHearthCard) {
     detailsContainer.innerHTML = detailsHtml;
 
 }
-
-
-
-
