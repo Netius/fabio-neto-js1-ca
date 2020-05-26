@@ -35,7 +35,7 @@ function createHearthStoneCards(hearthStoneCards) {
     const cardsSets = document.querySelector(".results");
     let cardsSetsHtml = "";
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 50; i < 80; i++) {
 
         // Checks if it has an image to display
         let cardsImage = hearthStoneCards[i].img;
