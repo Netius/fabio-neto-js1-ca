@@ -21,6 +21,11 @@ const addressError = document.querySelector("#addressError");
 let hasAddressError = false;
 
 const submit = document.querySelector("#submit");
+let sucessMsg = document.createElement("div");
+sucessMsg.style.display = "none";
+sucessMsg.style.color = "green";
+sucessMsg.style.marginTop = "15px";
+form.appendChild(sucessMsg);
 
 form.addEventListener("submit", formValidation);
 
@@ -28,7 +33,10 @@ form.addEventListener("submit", formValidation);
 function formValidation() {
     event.preventDefault();
 
-    // Name validation 
+
+    //TODO name required true
+
+
     if (lengthValidation(answer.value, 10) === false) {
         answerError.style.display = "block";
         hasAnswerError = false;
@@ -44,9 +52,7 @@ function formValidation() {
     } else {
         emailError.style.display = "none";
         hasEmailError = true;
-
     }
-
 
     // Email Validation
     const regExpression = /\S+@\S+\.\S+/;
@@ -67,24 +73,19 @@ function formValidation() {
     }
 
     // TODO need to fix success after submited
-    let sucessMsg = document.createElement("div");
-    sucessMsg.classList.add("TESTE");
-    sucessMsg.innerHTML = "Thank you! Your message has been successfully sent."
-    sucessMsg.style.color = "green";
-    sucessMsg.style.display = "none";
-    form.appendChild(sucessMsg);
-
     if (hasAnswerError && hasEmailError && hasInvalidEmailError && hasAddressError) {
+        sucessMsg.innerHTML = "Thank you! Your message has been successfully sent."
         sucessMsg.style.display = "block";
+        setInterval(function () {
+            name.value = "";
+            answer.value = "";
+            email.value = "";
+            address.value = "";
+        }, 1000);
     } else {
         sucessMsg.style.display = "none";
     }
-
-
-
 }
-
-
 
 
 // Helper function to check the length of input
