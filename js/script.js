@@ -15,7 +15,7 @@ async function fetchHearthStonesCards() {
         createHearthStoneCards(hearthStoneCards);
     } catch (error) {
         console.dir(error);
-        errorMessage(); //Using function from error.js for both index.html and details.html
+        errorMessage();
     }
 }
 fetchHearthStonesCards();

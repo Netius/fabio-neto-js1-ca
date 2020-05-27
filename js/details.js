@@ -19,7 +19,7 @@ async function fetchSingleCard() {
 
     } catch (error) {
         console.dir(error);
-        errorMessage(); //Using function from error.js for both index.html and details.html
+        errorMessage();
     }
 }
 fetchSingleCard();
