@@ -25,6 +25,7 @@ let sucessMsg = document.createElement("div");
 sucessMsg.style.display = "none";
 sucessMsg.style.color = "green";
 sucessMsg.style.marginTop = "15px";
+
 form.appendChild(sucessMsg);
 
 form.addEventListener("submit", formValidation);
@@ -32,10 +33,6 @@ form.addEventListener("submit", formValidation);
 
 function formValidation() {
     event.preventDefault();
-
-
-    //TODO name required true
-
 
     if (lengthValidation(answer.value, 10) === false) {
         answerError.style.display = "block";
@@ -72,21 +69,16 @@ function formValidation() {
         hasAddressError = true;
     }
 
-    // TODO need to fix success after submited
+
     if (hasAnswerError && hasEmailError && hasInvalidEmailError && hasAddressError) {
         sucessMsg.innerHTML = "Thank you! Your message has been successfully sent."
         sucessMsg.style.display = "block";
-        setInterval(function () {
-            name.value = "";
-            answer.value = "";
-            email.value = "";
-            address.value = "";
-        }, 1000);
+        form.reset(); //Reset forms input
     } else {
         sucessMsg.style.display = "none";
     }
-}
 
+}
 
 // Helper function to check the length of input
 function lengthValidation(input, validLength) {
